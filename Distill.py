@@ -373,7 +373,7 @@ def main(args, config):
         state_dict = checkpoint["model"]
         student_model.load_state_dict(state_dict, strict=False)
     else:
-        student_model.init_params(args.student_ckpt, ckpt_layer_num=12)
+        student_model.init_params(args.student_ckpt, ckpt_layer_num=12)     #todo how to automate ckpt_layer_num??
 
     student_model.to(device)
 
