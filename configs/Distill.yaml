@@ -1,0 +1,51 @@
+train_file:  ['./data/flickr30k_train.json']
+val_file:     './data/flickr30k_val.json'  # flickr30k_val
+test_file:    './data/flickr30k_test.json'
+#test_xmai_file: './data/flickr30k_test_xmai.json'
+image_root: './data/flickr30k/'
+
+bert_config: 'configs/config_bert.json'
+text_encoder: '/home/facelesswei/0-DC/pretrained/bert-base-uncased'
+
+# student_layer_num
+distill_layer_num: 2       # 2 / 6
+
+# loss_weight
+is_kd_distill: True
+loss_hidden_weight: 0.02
+loss_atten_weight: 0.01
+
+# EMD
+add_emd: False
+temperature: 1   # 12.5
+solver: opencv   # qpth  opencv
+metric: cosine  # l2
+
+# noise_training
+perturbed: False
+eps: 0.2
+is_uniformity: True
+
+
+image_res: 384
+batch_size_train: 32   # 4 32
+batch_size_test: 32    # 4 32
+
+queue_size: 65536
+momentum: 0.995
+vision_width: 768
+embed_dim: 256
+temp: 0.07
+k_test: 128
+
+alpha: 0.4
+momentum_distill: True
+warm_up: True
+
+optimizer: {opt: adamW, lr: 1e-4, weight_decay: 0.02}
+schedular: {sched: cosine, lr: 1e-4, epochs: 20, min_lr: 1e-6, decay_rate: 1, warmup_lr: 1e-5, warmup_epochs: 1, cooldown_epochs: 0}
+
+
+
+
+

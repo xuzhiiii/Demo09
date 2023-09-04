@@ -45,7 +45,10 @@ def create_dataset(dataset, config):
         train_dataset = re_train_dataset(config['train_file'], train_transform, config['image_root'])
         val_dataset = re_eval_dataset(config['val_file'], test_transform, config['image_root'])  
         test_dataset = re_eval_dataset(config['test_file'], test_transform, config['image_root'])                
-        return train_dataset, val_dataset, test_dataset   
+        if "test_xmai_file" in config:
+            test_xmai_dataset = re_eval_dataset(config['test_xmai_file'], test_transform, config['image_root'])
+            return train_dataset, val_dataset, test_dataset, test_xmai_dataset
+        return train_dataset, val_dataset, test_dataset
 
     elif dataset=='vqa': 
         train_dataset = vqa_dataset(config['train_file'], train_transform, config['vqa_root'], config['vg_root'], split='train') 
